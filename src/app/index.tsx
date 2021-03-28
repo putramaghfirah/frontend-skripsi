@@ -17,18 +17,20 @@ import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { LoginPage } from './pages/LoginPage/Loadable';
 import { useTranslation } from 'react-i18next';
 
+import { Navbar } from './components/Navbar';
+
 export function App() {
   const { i18n } = useTranslation();
   return (
     <React.Fragment>
       <Helmet
-        titleTemplate="%s - React Boilerplate"
-        defaultTitle="React Boilerplate"
+        titleTemplate="%s - Course Online"
+        defaultTitle="Course Online"
         htmlAttributes={{ lang: i18n.language }}
       >
-        <meta name="description" content="A React Boilerplate application" />
+        <meta name="description" content="Aplikasi Course Online" />
       </Helmet>
-
+      <Navbar />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/login" component={LoginPage} />

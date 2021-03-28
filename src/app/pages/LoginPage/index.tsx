@@ -31,7 +31,7 @@ export function LoginPage(props: Props) {
   const email = useSelector(selectEmail);
   const password = useSelector(selectPassword);
 
-  const [login, { data, loading, error }] = useLazyQuery(LOGIN);
+  const [login] = useLazyQuery(LOGIN);
 
   function onLogin() {
     login({
@@ -50,6 +50,4 @@ export function LoginPage(props: Props) {
   );
 }
 
-const Div = styled.div`
-  color: ${p => p.theme.boh};
-`;
+const Div = styled.div``;
