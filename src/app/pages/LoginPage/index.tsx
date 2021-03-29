@@ -45,7 +45,7 @@ export function LoginPage(props: Props) {
   return (
     <Div>
       <LoginForm />
-      <button onClick={() => onLogin()}>login</button>
+      {/* <button onClick={() => onLogin()}>login</button> */}
     </Div>
   );
 }
