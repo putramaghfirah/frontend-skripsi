@@ -6,7 +6,8 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
-import { Icon } from '../Icon';
+
+import { Button } from '../Button';
 
 interface Props {}
 
@@ -18,8 +19,11 @@ export function Navbar(props: Props) {
           <Logo>Course</Logo>
         </Link>
         <Search>
+          {/* //TODO: add icon search in placeholder*/}
           <InputSearch placeholder={` What do you want to learn today?`} />
-          <Button>Search</Button>
+          <Button padding="0 15px" borderRadius="0 6px 6px 0" color="primary">
+            Search
+          </Button>
         </Search>
       </ItemLeft>
       <ItemRight>
@@ -53,7 +57,7 @@ const ItemLeft = styled.div`
 const Logo = styled.p`
   padding: 30px;
   font-size: 21px;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const InputSearch = styled.input`
@@ -76,24 +80,10 @@ const InputSearch = styled.input`
   }
 `;
 
-const Button = styled.button`
-  border-radius: 0 6px 6px 0;
-  border: transparent;
-  background-color: ${p => p.theme.primary};
-  color: white;
-  padding: 0 15px;
-  transition: 0.2s;
-
-  :hover {
-    outline: none;
-    background-color: rgba(79, 70, 229, 1);
-  }
-`;
-
 const Search = styled.div`
   display: flex;
   ${InputSearch}:focus {
-    border: 2px solid ${p => p.theme.primary};
+    border: 1px solid ${p => p.theme.primary};
     outline: none;
   }
 `;
@@ -105,10 +95,12 @@ const ItemRight = styled.div`
 
 const Item = styled.li`
   list-style: none;
-  padding: 20px;
+  padding: 30px;
+  font-size: 16px;
+  font-weight: 400;
   a {
     text-decoration: none;
-    color: ${p => p.theme.fontColor(0.7)};
+    color: ${p => p.theme.textGray};
     transition: 0.3s;
   }
 
