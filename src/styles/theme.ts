@@ -2,8 +2,9 @@ export const theme = {
   primary: '#0070f3',
   primaryHover: '#0076ffe6',
   textGray: '#696969',
-  fontColor(opacity: number) {
-    return `rgba(0, 0, 0, ${opacity})`;
+  textBlack: '#111111',
+  fontColor(r: number, g: number, b: number, opacity: number) {
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
   },
 };
 
