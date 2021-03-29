@@ -21,7 +21,7 @@ export function Navbar(props: Props) {
         <Search>
           {/* //TODO: add icon search in placeholder*/}
           <InputSearch placeholder={` What do you want to learn today?`} />
-          <Button padding="0 15px" borderRadius="0 6px 6px 0" color="primary">
+          <Button padding="0 14px" borderRadius="0 6px 6px 0" color="primary">
             Search
           </Button>
         </Search>
@@ -50,26 +50,24 @@ const ItemLeft = styled.div`
   align-items: center;
   a {
     text-decoration: none;
-    color: black;
+    color: ${p => p.theme.textBlack};
   }
 `;
 
 const Logo = styled.p`
-  padding: 30px;
+  padding: 0 30px;
   font-size: 21px;
   font-weight: 600;
 `;
 
 const InputSearch = styled.input`
-  display: block;
-  width: 100%;
   color: #575757;
   background-color: #fff;
   border: 1px solid #e5e5ea;
   border-radius: 6px 0 0 6px;
   padding: 0 15px;
   height: 38px;
-  width: 600px;
+  width: 500px;
   font-size: 14px;
   outline: none;
   box-sizing: border-box;
@@ -83,7 +81,7 @@ const InputSearch = styled.input`
 const Search = styled.div`
   display: flex;
   ${InputSearch}:focus {
-    border: 1px solid ${p => p.theme.primary};
+    border: 2px solid ${p => p.theme.primary};
     outline: none;
   }
 `;
@@ -95,9 +93,9 @@ const ItemRight = styled.div`
 
 const Item = styled.li`
   list-style: none;
-  padding: 30px;
+  padding: 0 30px;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   a {
     text-decoration: none;
     color: ${p => p.theme.textGray};
@@ -105,6 +103,6 @@ const Item = styled.li`
   }
 
   a:hover {
-    color: ${p => p.theme.fontColor(1)};
+    color: ${p => p.theme.fontColor(0, 0, 0, 1)};
   }
 `;
