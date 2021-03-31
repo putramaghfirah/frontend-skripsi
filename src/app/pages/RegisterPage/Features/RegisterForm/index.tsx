@@ -6,31 +6,61 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 import { Card } from '../../../../components/Card/';
 import { Button } from '../../../../components/Button';
 import { Input } from '../../../../components/Input';
 import { InputPassword } from '../../../../components/Input/InputPassword';
+import { Inputs } from '../../../types/Inputs';
 
 interface Props {}
 
 export function RegisterForm(props: Props) {
+  const { register, handleSubmit, errors } = useForm();
+  function onSubmit(data: Inputs) {
+    console.log(data.fullname);
+    console.log(data.email);
+    console.log(data.password);
+    console.log(data.confirmpassword);
+  }
   return (
+    // TODO : validasi form
     <Wrapper>
       <Card padding="20px" margin="20px" width="450px">
         <Title>Sign up to course</Title>
-        <Form>
-          <Input width="15.625rem" placeholder="Full Name" type="text" />
-          <Input width="15.625rem" placeholder="Email" type="email" />
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            ref={register({ required: true })}
+            name="fullname"
+            width="15.625rem"
+            placeholder="Full Name"
+            type="text"
+            error={errors.fullname}
+          />
+          <Input
+            ref={register({ required: true })}
+            name="email"
+            width="15.625rem"
+            placeholder="Email"
+            type="email"
+            error={errors.email}
+          />
           <InputPassword
+            ref={register({ required: true })}
+            name="password"
             width="15.625rem"
             placeholder="Create Password"
             type="password"
+            error={errors.password}
           />
           <InputPassword
+            ref={register({ required: true })}
+            name="confirmpassword"
             width="15.625rem"
             placeholder="Confirm Password"
             type="password"
+            error={errors.confirmpassword}
           />
           <Button
             width="15.625rem"

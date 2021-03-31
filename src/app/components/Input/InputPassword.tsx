@@ -3,13 +3,15 @@ import { useState } from 'react';
 import styled from 'styled-components/macro';
 
 import { Icon } from '../Icon';
-import { InputField } from '../Input';
+import { InputField, FormGroup } from '../Input';
+import { Error } from './index';
 
 interface Props {
   name?: string;
   placeholder?: string;
   type?: 'password' | 'text';
   width?: string;
+  error?: string;
 }
 
 export const InputPassword = React.forwardRef<HTMLInputElement, Props>(
@@ -19,7 +21,7 @@ export const InputPassword = React.forwardRef<HTMLInputElement, Props>(
       type === 'password' ? setType('text') : setType('password');
     }
     return (
-      <Group>
+      <FormGroup>
         <InputField
           ref={ref}
           name={props.name}
@@ -27,19 +29,16 @@ export const InputPassword = React.forwardRef<HTMLInputElement, Props>(
           type={type}
           width={props.width}
         />
-        <Span onClick={onClick}>
+        {props.error && <Error>This field is required</Error>}
+        <Visibility onClick={onClick}>
           <Icon name="eye" color="rgba(24, 24, 25, 0.7)" />
-        </Span>
-      </Group>
+        </Visibility>
+      </FormGroup>
     );
   },
 );
 
-const Group = styled.div`
-  position: relative;
-`;
-
-const Span = styled.span`
+const Visibility = styled.span`
   position: absolute;
   top: 0;
   right: 23%;

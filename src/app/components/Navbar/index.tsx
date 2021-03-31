@@ -38,7 +38,7 @@ export function Navbar(props: Props) {
 const Wrapper = styled.nav`
   display: flex;
   width: 100vw;
-  height: 62px;
+  height: 3.5rem;
   align-items: center;
   justify-content: space-between;
   background-color: #f8f9fa;
@@ -76,14 +76,14 @@ const InputSearch = styled.input`
     font-size: 14px;
     color: black;
   }
+  :focus {
+    border: 2px solid ${p => p.theme.primary};
+    outline: none;
+  }
 `;
 
 const Search = styled.div`
   display: flex;
-  ${InputSearch}:focus {
-    border: 2px solid ${p => p.theme.primary};
-    outline: none;
-  }
 `;
 
 const ItemRight = styled.div`

@@ -6,7 +6,7 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
-// import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 // import { useDispatch } from 'react-redux';
 // import { loginFormActions } from './slice';
 import { useLoginFormSlice } from './slice';
@@ -17,6 +17,7 @@ import { Button } from '../../../../components/Button';
 import { Input } from '../../../../components/Input';
 import { InputPassword } from '../../../../components/Input/InputPassword';
 import { Icon } from '../../../../components/Icon';
+import { Inputs } from '../../../types/Inputs';
 
 interface Props {}
 
@@ -27,37 +28,37 @@ export function LoginForm(props: Props) {
   // const dispatch = useDispatch();
   useLoginFormSlice();
 
-  // const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   // function onChange({ email, password }: { email: string; password: string }) {
   //   dispatch(loginFormActions.changeEmail(email));
   //   dispatch(loginFormActions.changePassword(password));
   // }
+
+  function onSubmit(data: Inputs) {
+    console.log(data.email);
+    console.log(data.password);
+  }
   return (
     <Wrapper>
-      {/* <form onSubmit={handleSubmit(onChange)}>
-        <input
-          ref={register({ required: true })}
-          placeholder="email"
-          type="email"
-          name="email"
-        />
-        <input
-          ref={register({ required: true })}
-          placeholder="password"
-          type="password"
-          name="password"
-        />
-        <button type="submit"></button>
-      </form> */}
       <Card padding="20px" margin="20px" width="450px">
         <Title>Sign in to course</Title>
-        <Form>
-          <Input width="15.625rem" placeholder="Email" type="email" />
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            name="email"
+            ref={register({ required: true })}
+            width="15.625rem"
+            placeholder="Email"
+            type="email"
+            error={errors.email}
+          />
           <InputPassword
+            name="password"
+            ref={register({ required: true })}
             width="15.625rem"
             placeholder="Password"
             type="password"
+            error={errors.password}
           />
           <Button
             width="15.625rem"
