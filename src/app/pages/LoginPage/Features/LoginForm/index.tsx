@@ -4,6 +4,7 @@
  *
  */
 import * as React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
 // import { useForm } from 'react-hook-form';
@@ -14,7 +15,8 @@ import { Link } from 'react-router-dom';
 
 import { Card } from '../../../../components/Card/';
 import { Button } from '../../../../components/Button';
-import { Input, InputField } from '../../../../components/Input';
+import { Input } from '../../../../components/Input';
+import { InputPassword } from '../../../../components/Input/InputPassword';
 import { Icon } from '../../../../components/Icon';
 
 interface Props {}
@@ -22,6 +24,7 @@ interface Props {}
 export function LoginForm(props: Props) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t, i18n } = useTranslation();
+
   // const dispatch = useDispatch();
   useLoginFormSlice();
 
@@ -31,7 +34,6 @@ export function LoginForm(props: Props) {
   //   dispatch(loginFormActions.changeEmail(email));
   //   dispatch(loginFormActions.changePassword(password));
   // }
-
   return (
     <Wrapper>
       {/* <form onSubmit={handleSubmit(onChange)}>
@@ -52,10 +54,14 @@ export function LoginForm(props: Props) {
       <Card padding="20px" margin="20px" width="450px">
         <Title>Sign in to course</Title>
         <Form>
-          <Input width="250px" placeholder="Email" type="email" />
-          <Input width="250px" placeholder="Password" type="password" />
+          <Input width="15.625rem" placeholder="Email" type="email" />
+          <InputPassword
+            width="15.625rem"
+            placeholder="Password"
+            type="password"
+          />
           <Button
-            width="250px"
+            width="15.625rem"
             type="submit"
             padding="7px 11px"
             borderRadius="6px"
@@ -97,26 +103,10 @@ const OR = styled.p`
   font-size: 14px;
 `;
 
-const Form = styled.form`
-  ${InputField} {
-    margin: auto;
-    margin-bottom: 15px;
-    transition: 0.3s ease-in-out;
-  }
-
-  ${InputField}:hover {
-    border: 2px solid ${p => p.theme.primary};
-  }
-
-  ${InputField}:focus {
-    border: 2px solid ${p => p.theme.primary};
-    border-radius: 6px;
-    outline: none;
-  }
-`;
+const Form = styled.form``;
 
 const ButtonGoogle = styled.button`
-  width: 250px;
+  width: 15.625rem;
   padding: 7px 11px;
   border-radius: 6px;
   background-color: white;

@@ -32,9 +32,22 @@ export const InputField = styled.input<{ width?: string }>`
   border-radius: 6px;
   padding: 7px 11px;
   font-size: 14px;
+  font-weight: 500;
+  margin: auto;
+  margin-bottom: 15px;
+  transition: 0.3s ease-in-out;
 
   ::placeholder {
     font-size: 14px;
     color: black;
+  }
+  :hover {
+    border: 2px solid ${p => p.theme.primary};
+  }
+
+  :focus {
+    border: 2px solid ${p => p.theme.primary};
+    border-radius: 6px;
+    outline: none;
   }
 `;
