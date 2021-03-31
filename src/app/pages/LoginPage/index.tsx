@@ -4,7 +4,6 @@
  *
  */
 import * as React from 'react';
-import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useLazyQuery, gql } from '@apollo/client';
@@ -15,6 +14,7 @@ import {
 } from './Features/LoginForm/slice/selectors';
 
 import { LoginForm } from './Features/LoginForm';
+import { Helmet } from 'react-helmet-async';
 
 const LOGIN = gql`
   query($email: String!, $password: String!) {
@@ -43,11 +43,12 @@ export function LoginPage(props: Props) {
   }
 
   return (
-    <Div>
+    <React.Fragment>
+      <Helmet>
+        <title>Login Page</title>
+      </Helmet>
       <LoginForm />
       {/* <button onClick={() => onLogin()}>login</button> */}
-    </Div>
+    </React.Fragment>
   );
 }
-
-const Div = styled.div``;
