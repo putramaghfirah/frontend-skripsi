@@ -4,7 +4,6 @@
  *
  */
 import * as React from 'react';
-import { useState } from 'react';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
 // import { useForm } from 'react-hook-form';
