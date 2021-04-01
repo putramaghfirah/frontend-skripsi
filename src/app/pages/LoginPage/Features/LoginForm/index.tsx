@@ -94,6 +94,7 @@ const Title = styled.p`
   letter-spacing: -0.02em;
   font-size: 26px;
   font-weight: 600;
+  margin-bottom: 15px;
   color: ${p => p.theme.textBlack};
 `;
 
@@ -127,6 +128,7 @@ const ButtonGoogle = styled.button`
 `;
 
 const Register = styled.p`
+  margin-top: 10px;
   font-size: 12.5px;
   font-weight: 600;
   color: ${p => p.theme.textBlack};

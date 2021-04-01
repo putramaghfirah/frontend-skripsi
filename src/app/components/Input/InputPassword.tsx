@@ -42,5 +42,5 @@ const Visibility = styled.span`
   position: absolute;
   top: 0;
   right: 23%;
-  padding: 0.5rem 0;
+  padding: 0.75rem 0;
 `;
