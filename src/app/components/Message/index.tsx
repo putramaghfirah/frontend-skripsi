@@ -16,18 +16,20 @@ interface Props {
 export function Message({ error }: Props) {
   function getErrorMessages(error: ApolloError): string[] {
     const errors: string[] = error.graphQLErrors.map(gqlErr => {
-      // TODO: status code error from badri
-      return getErrorMessage(gqlErr.extensions?.exception.code);
-      // return getErrorMessage(gqlErr.extensions?.exception.response.statusCode);
+      return getErrorMessage(gqlErr.message);
     });
     return errors;
   }
-  function getErrorMessage(code: number) {
+  function getErrorMessage(code: string) {
     switch (code) {
-      case 11000:
-        return 'Email telah digunakan';
+      case 'Email provided is used!':
+        return 'Email provided is used!';
+      case 'Wrong Password!':
+        return 'Wrong Password!';
+      case 'User Not found!':
+        return 'User Not Found!';
       default:
-        return 'Register Gagal';
+        return 'Failed';
     }
   }
   return (
