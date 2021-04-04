@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components/macro';
+import { DeepMap, FieldErrors, FieldValues } from 'react-hook-form';
 
 import { Icon } from '../Icon';
 import { InputField, FormGroup } from '../Input';
@@ -11,7 +12,7 @@ interface Props {
   placeholder?: string;
   type?: 'password' | 'text';
   width?: string;
-  error?: string;
+  error?: DeepMap<FieldValues, FieldErrors>;
 }
 
 export const InputPassword = React.forwardRef<HTMLInputElement, Props>(
@@ -29,7 +30,15 @@ export const InputPassword = React.forwardRef<HTMLInputElement, Props>(
           type={type}
           width={props.width}
         />
-        {props.error && <Error>This field is required</Error>}
+        {props.error?.type === 'minLength' && (
+          <Error>The passwords must be more than 8 characters</Error>
+        )}
+        {props.error?.type === 'required' && (
+          <Error>This field is required</Error>
+        )}
+        {props.error?.type === 'validate' && (
+          <Error>The passwords do not match</Error>
+        )}
         <Visibility onClick={onClick}>
           <Icon name="eye" color="rgba(24, 24, 25, 0.7)" />
         </Visibility>

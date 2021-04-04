@@ -26,10 +26,8 @@ export function Message({ error }: Props) {
     switch (code) {
       case 11000:
         return 'Email telah digunakan';
-      case 400:
-        return 'Password minimal 8 huruf';
       default:
-        return 'Login Gagal';
+        return 'Register Gagal';
     }
   }
   return (

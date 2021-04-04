@@ -28,7 +28,9 @@ export function LoginForm(props: Props) {
   // const dispatch = useDispatch();
   useLoginFormSlice();
 
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm({
+    mode: 'onBlur',
+  });
 
   // function onChange({ email, password }: { email: string; password: string }) {
   //   dispatch(loginFormActions.changeEmail(email));

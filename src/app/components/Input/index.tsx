@@ -5,13 +5,14 @@
  */
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components/macro';
+import { DeepMap, FieldErrors, FieldValues } from 'react-hook-form';
 
 interface Props {
   name?: string;
   placeholder?: string;
   type?: 'password' | 'email' | 'text';
   width?: string;
-  error?: string;
+  error?: DeepMap<FieldValues, FieldErrors>;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => (
@@ -23,7 +24,10 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => (
       type={props.type}
       width={props.width}
     />
-    {props.error && <Error>This field is required</Error>}
+    {props.error?.type === 'minLength' && (
+      <Error>This field must be more than 8 characters</Error>
+    )}
+    {props.error?.type === 'required' && <Error>This field is required</Error>}
   </FormGroup>
 ));
 

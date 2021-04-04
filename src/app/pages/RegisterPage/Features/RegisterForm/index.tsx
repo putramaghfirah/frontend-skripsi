@@ -4,6 +4,7 @@
  *
  */
 import * as React from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -35,19 +36,21 @@ const CREATE_USER = gql`
 
 export function RegisterForm(props: Props) {
   const [createUser, { error }] = useMutation(CREATE_USER);
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, watch } = useForm({
+    mode: 'onBlur',
+  });
+
+  const checkPassword = useRef({});
+  checkPassword.current = watch('password', '');
+
   const dispatch = useDispatch();
+
   function onSubmit(data: Inputs) {
-    function checkPassword(password?: string, confPassword?: string) {
-      if (password === confPassword) {
-        return password;
-      }
-    }
     createUser({
       variables: {
         email: data.email,
         full_name: data.fullname,
-        password: checkPassword(data.password, data.confirmpassword),
+        password: data.confirmpassword,
       },
     })
       .then(_data => {
@@ -84,7 +87,7 @@ export function RegisterForm(props: Props) {
             error={errors.email}
           />
           <InputPassword
-            ref={register({ required: true })}
+            ref={register({ required: true, minLength: 8 })}
             name="password"
             width="15.625rem"
             placeholder="Create Password"
@@ -92,7 +95,11 @@ export function RegisterForm(props: Props) {
             error={errors.password}
           />
           <InputPassword
-            ref={register({ required: true })}
+            ref={register({
+              required: true,
+              minLength: 8,
+              validate: value => value === checkPassword.current || false,
+            })}
             name="confirmpassword"
             width="15.625rem"
             placeholder="Confirm Password"
