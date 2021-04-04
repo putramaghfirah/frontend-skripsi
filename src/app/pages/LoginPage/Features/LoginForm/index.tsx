@@ -5,29 +5,34 @@
  */
 import * as React from 'react';
 import styled from 'styled-components/macro';
-import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { loginFormActions } from './slice';
-import { useLoginFormSlice } from './slice';
+// import { useLoginFormSlice } from './slice';
+import { push } from 'connected-react-router';
 import { Link } from 'react-router-dom';
+import { gql, useLazyQuery } from '@apollo/client';
 
-import { Card } from '../../../../components/Card/';
-import { Button } from '../../../../components/Button';
-import { Input } from '../../../../components/Input';
-import { InputPassword } from '../../../../components/Input/InputPassword';
-import { Icon } from '../../../../components/Icon';
-import { Inputs } from '../../../types/Inputs';
+import { Card } from 'app/components/Card/';
+import { Button } from 'app/components/Button';
+import { Input } from 'app/components/Input';
+import { InputPassword } from 'app/components/Input/InputPassword';
+import { Icon } from 'app/components/Icon';
+import { Inputs } from 'app/pages/types/Inputs';
+import { Message } from 'app/components/Message';
 
 interface Props {}
 
+const LOGIN = gql`
+  query($email: String!, $password: String!) {
+    login(email: $email, password: $password)
+  }
+`;
+
 export function LoginForm(props: Props) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { t, i18n } = useTranslation();
-
-  // const dispatch = useDispatch();
-  useLoginFormSlice();
-
+  const dispatch = useDispatch();
+  // useLoginFormSlice();
+  const [login, { data, error }] = useLazyQuery(LOGIN);
   const { register, handleSubmit, errors } = useForm({
     mode: 'onBlur',
   });
@@ -38,14 +43,23 @@ export function LoginForm(props: Props) {
   // }
 
   function onSubmit(data: Inputs) {
-    console.log(data.email);
-    console.log(data.password);
+    login({
+      variables: {
+        email: data.email,
+        password: data.password,
+      },
+    });
+  }
+  if (data) {
+    localStorage.setItem('token', data.login);
+    dispatch(push('/'));
   }
   return (
     <Wrapper>
       <Card padding="20px" margin="20px" width="450px">
         <Title>Sign in to course</Title>
         <Form onSubmit={handleSubmit(onSubmit)}>
+          {error && <Message error={error} />}
           <Input
             name="email"
             ref={register({ required: true })}
