@@ -9,7 +9,8 @@ import styled from 'styled-components/macro';
 interface Props {
   padding?: string;
   width?: string;
-  color?: 'primary' | 'textGray';
+  backgroundColor?: string;
+  color?: string;
   borderRadius?: string;
   type?: 'submit' | 'button';
   fonWeight?: string;
@@ -24,6 +25,7 @@ export function Button(props: Props) {
       onClick={props.onClick}
       type={props.type}
       color={props.color}
+      backgroundColor={props.backgroundColor}
       padding={props.padding}
       borderRadius={props.borderRadius}
       fontWeight={props.fonWeight}
@@ -35,17 +37,19 @@ export function Button(props: Props) {
 
 const Buttons = styled.button<{
   padding?: string;
-  color?: string;
+  backgroundColor?: string;
   borderRadius?: string;
   width?: string;
   fontWeight?: string;
+  color?: string;
 }>`
   width: ${p => p.width};
   border-radius: ${p => p.borderRadius};
-  background-color: ${p => p.theme[p.color ? p.color : 'primary']};
+  background-color: ${p =>
+    p.theme[p.backgroundColor ? p.backgroundColor : 'primary']};
   padding: ${p => p.padding};
   border: transparent;
-  color: white;
+  color: ${p => p.color};
   transition: 0.2s;
   font-size: 16px;
   font-weight: ${p => (p.fontWeight ? p.fontWeight : '500')};

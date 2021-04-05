@@ -112,6 +112,7 @@ export function RegisterForm(props: Props) {
             padding="7px 11px"
             borderRadius="6px"
             fonWeight="600"
+            color="white"
           >
             Create Account
           </Button>
