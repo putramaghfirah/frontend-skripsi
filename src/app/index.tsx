@@ -18,9 +18,12 @@ import { LoginPage } from './pages/LoginPage/Loadable';
 import { RegisterPage } from './pages/RegisterPage/Loadable';
 import { useTranslation } from 'react-i18next';
 
+import { useUserSlice } from 'app/user';
+
 import { Navbar } from './components/Navbar';
 
 export function App() {
+  useUserSlice();
   const { i18n } = useTranslation();
   return (
     <React.Fragment>

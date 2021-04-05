@@ -1,4 +1,5 @@
 import { LoginFormState } from 'app/pages/LoginPage/Features/LoginForm/slice/types';
+import { UserState } from 'app/user/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -7,5 +8,6 @@ import { LoginFormState } from 'app/pages/LoginPage/Features/LoginForm/slice/typ
 */
 export interface RootState {
   loginForm?: LoginFormState;
+  user?: UserState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

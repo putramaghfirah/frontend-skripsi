@@ -4,6 +4,7 @@
  *
  */
 import * as React from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -12,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 import { Link } from 'react-router-dom';
 import { gql, useLazyQuery } from '@apollo/client';
+import { userActions } from 'app/user';
 
 import { Card } from 'app/components/Card/';
 import { Button } from 'app/components/Button';
@@ -29,18 +31,36 @@ const LOGIN = gql`
   }
 `;
 
+const MY_PROFILE = gql`
+  query {
+    myProfile {
+      full_name
+      email
+    }
+  }
+`;
+
 export function LoginForm(props: Props) {
   const dispatch = useDispatch();
-  // useLoginFormSlice();
+
   const [login, { data, error }] = useLazyQuery(LOGIN);
+  const [profil, { data: user }] = useLazyQuery(MY_PROFILE);
+
   const { register, handleSubmit, errors } = useForm({
     mode: 'onBlur',
   });
 
-  // function onChange({ email, password }: { email: string; password: string }) {
-  //   dispatch(loginFormActions.changeEmail(email));
-  //   dispatch(loginFormActions.changePassword(password));
-  // }
+  useEffect(() => {
+    if (data) {
+      localStorage.setItem('token', data.login);
+      profil();
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        dispatch(userActions.setUser(user));
+        dispatch(push('/'));
+      }
+    }
+  });
 
   function onSubmit(data: Inputs) {
     login({
@@ -50,10 +70,7 @@ export function LoginForm(props: Props) {
       },
     });
   }
-  if (data) {
-    localStorage.setItem('token', data.login);
-    dispatch(push('/'));
-  }
+
   return (
     <Wrapper>
       <Card padding="20px" margin="20px" width="450px">
@@ -82,6 +99,7 @@ export function LoginForm(props: Props) {
             padding="7px 11px"
             borderRadius="6px"
             fonWeight="600"
+            color="white"
           >
             Log in
           </Button>
