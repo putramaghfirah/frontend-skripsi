@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Loader } from 'rsuite';
 
 export function HomePage() {
   return (

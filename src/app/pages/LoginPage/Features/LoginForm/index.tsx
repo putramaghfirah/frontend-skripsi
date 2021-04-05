@@ -53,7 +53,6 @@ export function LoginForm(props: Props) {
   useEffect(() => {
     if (data) {
       localStorage.setItem('token', data.login);
-      profil();
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
         dispatch(userActions.setUser(user));
@@ -69,6 +68,7 @@ export function LoginForm(props: Props) {
         password: data.password,
       },
     });
+    profil();
   }
 
   return (
