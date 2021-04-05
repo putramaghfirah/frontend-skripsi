@@ -6,12 +6,24 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
+import { selectUser } from 'app/user/selectors';
+import { userActions } from 'app/user';
+import { useSelector, useDispatch } from 'react-redux';
+import { push } from 'connected-react-router';
 
 import { Button } from '../Button';
 
 interface Props {}
 
 export function Navbar(props: Props) {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  function onClick() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    dispatch(userActions.deleteUser());
+    dispatch(push('/login'));
+  }
   return (
     <Wrapper>
       <ItemLeft>
@@ -21,15 +33,25 @@ export function Navbar(props: Props) {
         <Search>
           {/* //TODO: add icon search in placeholder*/}
           <InputSearch placeholder={` What do you want to learn today?`} />
-          <Button padding="0 14px" borderRadius="0 6px 6px 0" color="primary">
+          <Button padding="0 14px" borderRadius="0 6px 6px 0" color="white">
             Search
           </Button>
         </Search>
       </ItemLeft>
       <ItemRight>
-        <Item>
-          <Link to="/login">Sign in</Link>
-        </Item>
+        {user && (
+          <Items>
+            <Item>MyProfile</Item>
+            <Item>
+              <button onClick={onClick}>Sign Out</button>
+            </Item>
+          </Items>
+        )}
+        {!user && (
+          <Item>
+            <Link to="/login">Sign in</Link>
+          </Item>
+        )}
       </ItemRight>
     </Wrapper>
   );
@@ -87,6 +109,11 @@ const Search = styled.div`
 `;
 
 const ItemRight = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Items = styled.div`
   display: flex;
   align-items: center;
 `;
