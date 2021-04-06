@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /**
  *
  * LoginForm
@@ -53,15 +54,19 @@ export function LoginForm(props: Props) {
   useEffect(() => {
     if (data) {
       localStorage.setItem('token', data.login);
-      if (user) {
-        localStorage.setItem('user', JSON.stringify(user));
-        dispatch(userActions.setUser(user));
-        dispatch(push('/'));
-      }
+      profil();
     } else if (localStorage.getItem('token')) {
       dispatch(push('/'));
     }
-  });
+  }, [data]);
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
+      dispatch(userActions.setUser(user));
+      dispatch(push('/'));
+    }
+  }, [user]);
 
   function onSubmit(data: Inputs) {
     login({
@@ -70,7 +75,6 @@ export function LoginForm(props: Props) {
         password: data.password,
       },
     });
-    profil();
   }
 
   return (
