@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 
 import { Button } from '../Button';
+import { Dropdown } from '../Dropdown';
 
 interface Props {}
 
@@ -30,23 +31,21 @@ export function Navbar(props: Props) {
         <Link to="/">
           <Logo>Course</Logo>
         </Link>
-        <Search>
-          {/* //TODO: add icon search in placeholder*/}
-          <InputSearch placeholder={` What do you want to learn today?`} />
-          <Button padding="0 14px" borderRadius="0 6px 6px 0" color="white">
-            Search
-          </Button>
-        </Search>
       </ItemLeft>
+      <Search>
+        {/* //TODO: add icon search in placeholder*/}
+        <InputSearch placeholder={` What do you want to learn today?`} />
+        <Button
+          width="max-content"
+          padding="0 14px"
+          borderRadius="0 6px 6px 0"
+          color="white"
+        >
+          Search
+        </Button>
+      </Search>
       <ItemRight>
-        {user && (
-          <Items>
-            <Item>MyProfile</Item>
-            <Item>
-              <button onClick={onClick}>Sign Out</button>
-            </Item>
-          </Items>
-        )}
+        {user && <Dropdown />}
         {!user && (
           <Item>
             <Link to="/login">Sign in</Link>
@@ -64,6 +63,7 @@ const Wrapper = styled.nav`
   align-items: center;
   justify-content: space-between;
   background-color: #f8f9fa;
+  padding: 0 20px;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
 `;
 
@@ -77,8 +77,8 @@ const ItemLeft = styled.div`
 `;
 
 const Logo = styled.p`
-  padding: 0 30px;
   font-size: 21px;
+  width: max-content;
   font-weight: 600;
 `;
 
@@ -89,13 +89,13 @@ const InputSearch = styled.input`
   border-radius: 6px 0 0 6px;
   padding: 0 15px;
   height: 38px;
-  width: 500px;
-  font-size: 14px;
+  width: 40vw;
+  font-size: 0.875rem;
   outline: none;
   box-sizing: border-box;
 
   ::placeholder {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: black;
   }
   :focus {
@@ -113,15 +113,10 @@ const ItemRight = styled.div`
   align-items: center;
 `;
 
-const Items = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 const Item = styled.li`
   list-style: none;
-  padding: 0 30px;
-  font-size: 16px;
+  padding: 0 13px;
+  font-size: 0.875rem;
   font-weight: 500;
   a {
     text-decoration: none;
@@ -130,6 +125,18 @@ const Item = styled.li`
   }
 
   a:hover {
+    color: ${p => p.theme.fontColor(0, 0, 0, 1)};
+  }
+`;
+
+const SignOut = styled.button`
+  padding: 0;
+  margin: 0;
+  color: ${p => p.theme.textGray};
+  background-color: inherit;
+  outline: none;
+  transition: 0.3s;
+  :hover {
     color: ${p => p.theme.fontColor(0, 0, 0, 1)};
   }
 `;

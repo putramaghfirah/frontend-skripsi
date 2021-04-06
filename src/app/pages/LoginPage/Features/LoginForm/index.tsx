@@ -149,7 +149,7 @@ const ButtonGoogle = styled.button`
   color: rgba(24, 24, 25, 0.7);
   transition: 0.2s;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 0.875rem;
 
   :focus {
     outline: none;

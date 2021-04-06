@@ -51,7 +51,7 @@ const Buttons = styled.button<{
   border: transparent;
   color: ${p => p.color};
   transition: 0.2s;
-  font-size: 16px;
+  font-size: 0.875rem;
   font-weight: ${p => (p.fontWeight ? p.fontWeight : '500')};
 
   :hover {
