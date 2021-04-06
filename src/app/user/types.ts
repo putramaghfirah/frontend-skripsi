@@ -1,4 +1,16 @@
 /* --- STATE --- */
 export interface UserState {
-  user?: object;
+  user?: {
+    myProfile: {
+      email?: string;
+      full_name?: string;
+    };
+  };
 }
+
+export type MyProfile = {
+  myProfile: {
+    email?: string;
+    full_name?: string;
+  };
+};

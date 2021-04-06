@@ -6,3 +6,7 @@ import { initialState } from '.';
 const selectSlice = (state: RootState) => state.user || initialState;
 
 export const selectUser = createSelector([selectSlice], state => state.user);
+export const selectFullName = createSelector(
+  [selectSlice],
+  state => state.user?.myProfile.full_name,
+);

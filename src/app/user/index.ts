@@ -1,7 +1,9 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { useInjectReducer } from 'utils/redux-injectors';
-import { UserState } from './types';
+import { UserState, MyProfile } from './types';
+
+// import { MyProfile } from 'app/pages/types/MyProfiles';
 
 export const initialState: UserState = {
   user: localStorage.getItem('user')
@@ -14,7 +16,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     someAction(state, action: PayloadAction<any>) {},
-    setUser(state, action: PayloadAction<object>) {
+    setUser(state, action: PayloadAction<MyProfile>) {
       state.user = action.payload;
     },
     deleteUser(state) {

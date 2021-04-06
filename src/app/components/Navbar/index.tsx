@@ -6,7 +6,7 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
-import { selectUser } from 'app/user/selectors';
+import { selectUser, selectFullName } from 'app/user/selectors';
 import { userActions } from 'app/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
@@ -20,6 +20,7 @@ interface Props {}
 export function Navbar(props: Props) {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const userFullName = useSelector(selectFullName);
   function onClick() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -50,7 +51,7 @@ export function Navbar(props: Props) {
           <Dropdown>
             <Info>
               <TextSign>Signed in as</TextSign>
-              <TextName>Putra Maghfirah</TextName>
+              <TextName>{userFullName}</TextName>
             </Info>
             <Divider />
             <Link to="/">Your profile</Link>
