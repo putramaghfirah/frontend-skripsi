@@ -10,6 +10,7 @@ interface Props {
   color?: string;
   fontSize?: string;
   padding?: string;
+  margin?: string;
 }
 
 export function Icon(props: Props) {
@@ -19,6 +20,7 @@ export function Icon(props: Props) {
       color: props.color,
       fontSize: props.fontSize,
       padding: props.padding,
+      margin: props.margin,
     },
   });
 }

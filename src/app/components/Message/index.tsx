@@ -34,7 +34,7 @@ export function Message({ error }: Props) {
   }
   return (
     <Container>
-      <Icon name="close-circle" color="red" />
+      <Icon padding="0 3px" fontSize="18px" name="close-circle" color="red" />
       {getErrorMessages(error)}
     </Container>
   );
