@@ -13,6 +13,7 @@ import { push } from 'connected-react-router';
 
 import { Button } from '../Button';
 import { Dropdown } from '../Dropdown';
+import { Icon } from '../Icon';
 
 interface Props {}
 
@@ -45,7 +46,28 @@ export function Navbar(props: Props) {
         </Button>
       </Search>
       <ItemRight>
-        {user && <Dropdown />}
+        {user && (
+          <Dropdown>
+            <Info>
+              <TextSign>Signed in as</TextSign>
+              <TextName>Putra Maghfirah</TextName>
+            </Info>
+            <Divider />
+            <Link to="/">Your profile</Link>
+            <Link to="#">Your bookmarks</Link>
+            <Link to="#">Your collections</Link>
+            <Link to="#">Your favorites</Link>
+            <Divider />
+            <SignOut onClick={onClick}>
+              <Icon
+                padding="0 5px 0 0"
+                fontSize="18px"
+                name="log-out-outline"
+              />
+              Sign Out
+            </SignOut>
+          </Dropdown>
+        )}
         {!user && (
           <Item>
             <Link to="/login">Sign in</Link>
@@ -63,7 +85,7 @@ const Wrapper = styled.nav`
   align-items: center;
   justify-content: space-between;
   background-color: #f8f9fa;
-  padding: 0 20px;
+  padding: 0 1.25em;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
 `;
 
@@ -77,7 +99,7 @@ const ItemLeft = styled.div`
 `;
 
 const Logo = styled.p`
-  font-size: 21px;
+  font-size: 1.3125rem;
   width: max-content;
   font-weight: 600;
 `;
@@ -87,7 +109,7 @@ const InputSearch = styled.input`
   background-color: #fff;
   border: 1px solid #e5e5ea;
   border-radius: 6px 0 0 6px;
-  padding: 0 15px;
+  padding: 0 0.9375em;
   height: 38px;
   width: 40vw;
   font-size: 0.875rem;
@@ -129,14 +151,29 @@ const Item = styled.li`
   }
 `;
 
-const SignOut = styled.button`
-  padding: 0;
-  margin: 0;
+const Info = styled.div`
+  padding: 4px 0 0 10px;
+  cursor: default;
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  margin: 6px 0;
+  overflow: hidden;
+  background-color: #e5e5ea;
+`;
+
+const SignOut = styled.div`
+  display: flex;
+  padding: 8px 12px;
+  transition: 0.2s;
+  font-size: 0.875rem;
   color: ${p => p.theme.textGray};
-  background-color: inherit;
-  outline: none;
-  transition: 0.3s;
   :hover {
-    color: ${p => p.theme.fontColor(0, 0, 0, 1)};
+    background-color: #f2faff;
   }
 `;
+
+const TextSign = styled.p``;
+
+const TextName = styled.strong``;

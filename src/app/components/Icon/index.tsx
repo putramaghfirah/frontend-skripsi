@@ -9,6 +9,7 @@ interface Props {
   name: string;
   color?: string;
   fontSize?: string;
+  padding?: string;
 }
 
 export function Icon(props: Props) {
@@ -16,7 +17,8 @@ export function Icon(props: Props) {
     name: props.name,
     style: {
       color: props.color,
-      fontSize: props.color,
+      fontSize: props.fontSize,
+      padding: props.padding,
     },
   });
 }
