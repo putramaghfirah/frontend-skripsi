@@ -4,7 +4,7 @@
  *
  */
 import * as React from 'react';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -44,6 +44,12 @@ export function RegisterForm(props: Props) {
   checkPassword.current = watch('password', '');
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      dispatch(push('/'));
+    }
+  });
 
   function onSubmit(data: Inputs) {
     createUser({

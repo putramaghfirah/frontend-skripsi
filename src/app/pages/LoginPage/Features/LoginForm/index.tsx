@@ -58,6 +58,8 @@ export function LoginForm(props: Props) {
         dispatch(userActions.setUser(user));
         dispatch(push('/'));
       }
+    } else if (localStorage.getItem('token')) {
+      dispatch(push('/'));
     }
   });
 
