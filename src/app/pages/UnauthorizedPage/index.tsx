@@ -1,24 +1,30 @@
+/**
+ *
+ * UnauthorizedPage
+ *
+ */
 import * as React from 'react';
 import styled from 'styled-components/macro';
-import { P } from './P';
 import { Helmet } from 'react-helmet-async';
 
-export function NotFoundPage() {
+interface Props {}
+
+export function UnauthorizedPage(props: Props) {
   return (
     <>
       <Helmet>
-        <title>404 Page Not Found</title>
+        <title>401 Unauthorized</title>
         <meta name="description" content="Page not found" />
       </Helmet>
       <Wrapper>
         <Title>
           4
           <span role="img" aria-label="Crying Face">
-            😢
+            😓
           </span>
-          4
+          1
         </Title>
-        <P>Page not found.</P>
+        <P>You don't have access to this page</P>
       </Wrapper>
     </>
   );
@@ -32,6 +38,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
+  text-align: center;
   font-weight: bold;
   color: black;
   font-size: 3.375rem;
@@ -39,4 +46,11 @@ const Title = styled.div`
   span {
     font-size: 3.125rem;
   }
+`;
+
+const P = styled.p`
+  font-size: 1rem;
+  line-height: 1.5;
+  color: black;
+  text-align: center;
 `;
