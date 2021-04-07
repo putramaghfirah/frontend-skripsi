@@ -54,7 +54,7 @@ export function Navbar(props: Props) {
               <TextName>{userFullName}</TextName>
             </Info>
             <Divider />
-            <Link to="/">Your profile</Link>
+            <Link to="/profile">Your profile</Link>
             <Link to="#">Your bookmarks</Link>
             <Link to="#">Your collections</Link>
             <Link to="#">Your favorites</Link>

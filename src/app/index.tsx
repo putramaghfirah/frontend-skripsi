@@ -16,11 +16,13 @@ import { HomePage } from './pages/HomePage/Loadable';
 import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { LoginPage } from './pages/LoginPage/Loadable';
 import { RegisterPage } from './pages/RegisterPage/Loadable';
+import { ProfilePage } from './pages/ProfilePage/Loadable';
 import { useTranslation } from 'react-i18next';
 
 import { useUserSlice } from 'app/user';
 
 import { Navbar } from './components/Navbar';
+import { GuardedRoute } from './components/GuardedRoute';
 
 export function App() {
   useUserSlice();
@@ -39,6 +41,7 @@ export function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/register" component={RegisterPage} />
+        <GuardedRoute exact path="/profile" component={ProfilePage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

@@ -52,4 +52,5 @@ const Visibility = styled.span`
   top: 0;
   right: 23%;
   padding: 0.75rem 0;
+  cursor: pointer;
 `;
