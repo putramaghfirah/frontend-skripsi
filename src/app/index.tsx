@@ -17,12 +17,14 @@ import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { LoginPage } from './pages/LoginPage/Loadable';
 import { RegisterPage } from './pages/RegisterPage/Loadable';
 import { ProfilePage } from './pages/ProfilePage/Loadable';
-import { useTranslation } from 'react-i18next';
+import { AdminHomePage } from './pages/Admin/AdminHomePage/Loadable';
+import { UnauthorizedPage } from './pages/UnauthorizedPage/Loadable';
 
+import { useTranslation } from 'react-i18next';
+import { GuardedRoute } from './components/GuardedRoute';
 import { useUserSlice } from 'app/user';
 
 import { Navbar } from './components/Navbar';
-import { GuardedRoute } from './components/GuardedRoute';
 
 export function App() {
   useUserSlice();
@@ -36,12 +38,20 @@ export function App() {
       >
         <meta name="description" content="Aplikasi Course Online" />
       </Helmet>
+      {/* {admin ? <NavbarAdmin/> : <Navbar>} */}
       <Navbar />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/register" component={RegisterPage} />
+        <Route exact path="/unauthorized" component={UnauthorizedPage} />
         <GuardedRoute exact path="/profile" component={ProfilePage} />
+        <GuardedRoute
+          exact
+          roles={['ADMIN']}
+          path="/admin"
+          component={AdminHomePage}
+        />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
