@@ -37,13 +37,13 @@ const MY_PROFILE = gql`
     myProfile {
       full_name
       email
+      roles
     }
   }
 `;
 
 export function LoginForm(props: Props) {
   const dispatch = useDispatch();
-
   const [login, { data, error }] = useLazyQuery(LOGIN);
   const [profil, { data: user }] = useLazyQuery(MY_PROFILE);
 
@@ -62,9 +62,11 @@ export function LoginForm(props: Props) {
 
   useEffect(() => {
     if (user) {
-      localStorage.setItem('user', JSON.stringify(user));
-      dispatch(userActions.setUser(user));
-      dispatch(push('/'));
+      localStorage.setItem('user', JSON.stringify(user.myProfile));
+      dispatch(userActions.setUser(user.myProfile));
+      if (user.myProfile.roles.includes('ADMIN')) {
+        dispatch(push('/admin'));
+      } else dispatch(push('/'));
     }
   }, [user]);
 

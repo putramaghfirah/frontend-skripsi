@@ -1,7 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { useInjectReducer } from 'utils/redux-injectors';
-import { UserState, MyProfile } from './types';
+import { User, UserState } from './types';
 
 // import { MyProfile } from 'app/pages/types/MyProfiles';
 
@@ -16,7 +16,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     someAction(state, action: PayloadAction<any>) {},
-    setUser(state, action: PayloadAction<MyProfile>) {
+    setUser(state, action: PayloadAction<User>) {
       state.user = action.payload;
     },
     deleteUser(state) {

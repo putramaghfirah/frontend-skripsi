@@ -8,5 +8,9 @@ const selectSlice = (state: RootState) => state.user || initialState;
 export const selectUser = createSelector([selectSlice], state => state.user);
 export const selectFullName = createSelector(
   [selectSlice],
-  state => state.user?.myProfile.full_name,
+  state => state.user?.full_name,
+);
+export const selectRole = createSelector(
+  [selectSlice],
+  state => state.user?.roles,
 );

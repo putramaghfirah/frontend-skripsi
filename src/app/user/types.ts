@@ -1,16 +1,10 @@
 /* --- STATE --- */
 export interface UserState {
-  user?: {
-    myProfile: {
-      email?: string;
-      full_name?: string;
-    };
-  };
+  user?: User;
 }
 
-export type MyProfile = {
-  myProfile: {
-    email?: string;
-    full_name?: string;
-  };
-};
+export interface User {
+  email: string;
+  full_name: string;
+  roles: string[];
+}
