@@ -50,16 +50,17 @@ const Buttons = styled.button<{
   padding: ${p => p.padding};
   border: transparent;
   color: ${p => p.color};
-  transition: 0.2s;
+  transition: 0.35s;
+  font-family: inherit;
   font-size: 0.875rem;
   font-weight: ${p => (p.fontWeight ? p.fontWeight : '500')};
 
-  :hover {
+  &:hover {
     outline: none;
     background-color: ${p => p.theme.primaryHover};
   }
 
-  :focus {
+  &:focus {
     border: transparent;
     outline: none;
   }

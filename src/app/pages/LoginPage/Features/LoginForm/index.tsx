@@ -107,7 +107,7 @@ export function LoginForm(props: Props) {
             padding="7px 11px"
             borderRadius="6px"
             fonWeight="600"
-            color="white"
+            color="#f7f7f7"
           >
             Log in
           </Button>
